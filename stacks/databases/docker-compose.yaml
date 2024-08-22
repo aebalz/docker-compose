@@ -1,0 +1,26 @@
+x-file-path: &file-path ./../../configs/services.yaml 
+
+services:
+
+  mysql:
+    extends:
+      file: *file-path
+      service: mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - db
+
+  redis:
+    extends:
+      file: *file-path
+      service: redis
+    networks:
+      - db
+
+volumes:
+  db_data:
+
+networks:
+  db:
+    driver: bridge
