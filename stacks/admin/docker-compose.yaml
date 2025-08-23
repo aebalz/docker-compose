@@ -12,6 +12,7 @@ services:
       - ./data/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
+
 networks:
   admin:
     driver: bridge

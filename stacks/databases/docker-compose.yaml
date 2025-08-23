@@ -18,6 +18,22 @@ services:
     networks:
       - db
 
+  pg:
+    extends:
+      file: *file-path
+      service: pg
+    networks:
+      - db
+
+  pgadmin:
+    extends:
+      file: *file-path
+      service: pgadmin
+    networks:
+      - db
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
+
 volumes:
   db_data:
 

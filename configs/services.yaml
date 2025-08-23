@@ -13,7 +13,7 @@ services:
 
   mysql:
     <<: *base
-    image: mysql:oraclelinux9
+    image: mysql:8.0
     container_name: mysql-con
     hostname: mysql
     ports:
@@ -31,3 +31,28 @@ services:
     hostname: redis
     ports:
       - "6379:6379"
+
+  pg:
+    <<: *base
+    image: postgres:latest
+    container_name: pg-con
+    hostname: pg
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: init
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  pgadmin:
+    <<: *base
+    image: dpage/pgadmin4
+    container_name: pgadmin-con
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
